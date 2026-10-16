@@ -41,6 +41,18 @@ function initContato() {
     const campo = el.dataset.texto;
     if (!vazio(campo)) el.textContent = texto[campo] ? texto[campo]() : C[campo];
   });
+
+  // Dados estruturados da home: completa com telefone e Instagram, se houver
+  const ld = document.getElementById("dadosEstruturados");
+  if (ld) {
+    try {
+      const dados = JSON.parse(ld.textContent);
+      if (!vazio("telefone")) dados.telephone = `+55 ${formatarTelefone(C.telefone)}`;
+      if (!vazio("instagram")) dados.sameAs = [C.instagram];
+      if (!vazio("email")) dados.email = C.email;
+      ld.textContent = JSON.stringify(dados, null, 2);
+    } catch (e) { /* mantém o JSON original */ }
+  }
 }
 
 /* ---------- Cabeçalho: fundo sólido após 50px ---------- */
