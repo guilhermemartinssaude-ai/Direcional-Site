@@ -655,17 +655,53 @@ button{font-family:inherit; cursor:pointer;}
 @media (max-width:640px){ .cotacao-final .quote-card{padding:24px 18px;} }
 
 /* ---------- Rodapé ---------- */
-.site-footer{background:var(--azul-profundo); color:var(--texto-sobre-escuro-suave); padding-block:52px 28px; font-size:14px;}
-.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;}
-@media (max-width:760px){ .footer-grid{grid-template-columns:1fr;} }
-.footer-grid h5{color:var(--branco); font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;}
-.footer-grid ul li{margin-bottom:8px;}
-.footer-grid ul a:hover{color:var(--branco);}
-.site-footer .brand{margin-bottom:16px;}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.12); margin-top:40px; padding-top:20px;
-  display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px;
+.site-footer{
+  position:relative; overflow:hidden; isolation:isolate;
+  background:var(--azul-profundo); color:var(--texto-sobre-escuro-suave);
+  padding-block:64px 28px; font-size:14.5px;
 }
+/* forma curva decorativa no canto */
+.site-footer::before{
+  content:""; position:absolute; z-index:-1; right:-180px; top:-220px;
+  width:560px; height:560px; border-radius:50%; background:var(--azul-medio); opacity:.7;
+}
+.site-footer::after{
+  content:""; position:absolute; z-index:-1; right:-260px; top:-300px;
+  width:720px; height:720px; border-radius:50%; border:2px solid rgba(0,191,165,.25);
+}
+.footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px;}
+@media (max-width:1000px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width:640px){ .footer-grid{grid-template-columns:1fr; gap:32px;} }
+.footer-titulo{
+  position:relative; color:var(--branco); font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:.06em;
+  padding-bottom:12px; margin-bottom:16px;
+}
+.footer-titulo::after{content:""; position:absolute; left:0; bottom:0; width:100%; height:1px; background:rgba(255,255,255,.15);}
+.footer-links li{margin-bottom:10px;}
+.footer-links a{
+  color:var(--texto-sobre-escuro-suave); padding-bottom:2px;
+  background:linear-gradient(var(--verde), var(--verde)) 0 100% / 0 2px no-repeat;
+  transition:background-size .25s ease, color .2s ease;
+}
+.footer-links a:hover, .footer-links a:focus-visible{color:var(--branco); background-size:100% 2px;}
+.site-footer .brand{margin-bottom:20px;}
+.footer-botoes{display:flex; flex-direction:column; align-items:flex-start; gap:10px;}
+.footer-botoes .btn-whats{padding:10px 20px; font-size:14px;}
+.footer-legal{margin-top:22px; font-size:13px; line-height:1.6;}
+.footer-legal li + li{margin-top:4px;}
+.footer-legal a{display:inline-flex; gap:6px; align-items:flex-start; text-decoration:underline; text-underline-offset:3px;}
+.footer-legal a:hover{color:var(--branco);}
+.footer-legal .ico{width:16px; height:16px; margin-top:3px; stroke:var(--verde);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.12); margin-top:48px; padding-top:22px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px;
+}
+.footer-social{
+  width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
+  border:1px solid rgba(255,255,255,.25); color:var(--branco); transition:background-color .2s ease;
+}
+.footer-social:hover{background:rgba(255,255,255,.12);}
+.footer-social .ico{width:20px; height:20px; stroke:currentColor;}
 
 /* =========================================================
    Movimento e interatividade
@@ -726,7 +762,7 @@ button{font-family:inherit; cursor:pointer;}
 /* Voltar ao topo (acima do WhatsApp flutuante) */
 .to-top{
   position:fixed; right:27px; bottom:92px; z-index:50;
-  width:44px; height:44px; border-radius:50%; border:none;
+  width:44px; height:44px; border-radius:50%; border:1.5px solid rgba(255,255,255,.45);
   background:var(--azul-profundo); color:var(--branco);
   display:flex; align-items:center; justify-content:center;
   box-shadow:0 10px 24px -10px rgba(11,58,92,.6);

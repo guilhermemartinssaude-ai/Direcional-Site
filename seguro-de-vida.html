@@ -256,7 +256,7 @@
 
 </main>
 
-<!-- RODAPE:INICIO (manter idêntico em todas as páginas) -->
+<!-- RODAPE:INICIO (manter idêntico em todas as páginas; dados de contato vêm de js/config.js) -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
@@ -265,43 +265,55 @@
           <img class="brand-logo" src="assets/logo-direcional.png" alt="Logo da Direcional" height="42">
           <span class="brand-text"><b>Direcional</b><small>Corretora de Seguros e Saúde</small></span>
         </a>
-        <p><!-- PLACEHOLDER: endereço real --> Florianópolis, SC</p>
-        <p style="margin-top:8px;"><!-- PLACEHOLDER: WhatsApp real --> WhatsApp: (48) 9XXXX-XXXX</p>
-      </div>
-      <div>
-        <h5>A Direcional</h5>
-        <ul>
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#por-que">Sobre nós</a></li>
-          <li><a href="#">Trabalhe conosco</a></li>
-          <li><a href="#">Política de privacidade</a></li>
+        <h2 class="sr-only">Contato</h2>
+        <div class="footer-botoes">
+          <a class="btn-pill" href="#" data-contato="email" data-href="email"><svg class="ico" aria-hidden="true"><use href="#i-email"/></svg><span data-texto="email">E-mail</span></a>
+          <a class="btn-pill" href="#" data-contato="telefone" data-href="telefone"><svg class="ico" aria-hidden="true"><use href="#i-telefone"/></svg>Ligue agora: <span data-texto="telefone"></span></a>
+          <a class="btn btn-whats" href="#" data-contato="whatsappPrincipal" data-href="whatsappPrincipal" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-conversa"/></svg>Fale no WhatsApp</a>
+        </div>
+        <ul class="footer-legal">
+          <li>Direcional Corretora de Seguros e Saúde</li>
+          <li data-contato="susep">Corretora registrada na SUSEP nº <span data-texto="susep"></span></li>
+          <li data-contato="cnpj">CNPJ <span data-texto="cnpj"></span></li>
+          <li data-contato="endereco"><a href="#" data-href="mapsUrl" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-local"/></svg><span data-texto="endereco"></span></a></li>
         </ul>
       </div>
-      <div>
-        <h5>Produtos</h5>
-        <ul>
-          <li><a href="#produtos">Plano de Saúde</a></li>
-          <li><a href="#produtos">Seguro de Vida</a></li>
-          <li><a href="#produtos">Seguro Auto</a></li>
-          <li><a href="#produtos">Seguro Viagem</a></li>
+      <nav aria-labelledby="rodape-direcional">
+        <h2 class="footer-titulo" id="rodape-direcional">A Direcional</h2>
+        <ul class="footer-links">
+          <li><a href="index.html">Página inicial</a></li>
+          <li><a href="quem-somos.html">Quem somos</a></li>
+          <li><a href="quem-somos.html#trajetoria">Nossa trajetória</a></li>
+          <li><a href="index.html#clientes">Empresas que confiam</a></li>
+          <li><a href="index.html#duvidas">Dúvidas</a></li>
+          <li><a href="politica-de-privacidade.html">Política de privacidade</a></li>
         </ul>
-      </div>
-      <div>
-        <h5>Fale Conosco</h5>
-        <ul>
-          <li><a href="#">WhatsApp</a></li>
-          <li><a href="#">E-mail</a></li>
-          <li><a href="#">Blog</a></li>
+      </nav>
+      <nav aria-labelledby="rodape-planos">
+        <h2 class="footer-titulo" id="rodape-planos">Planos</h2>
+        <ul class="footer-links">
+          <li><a href="plano-de-saude-individual.html">Saúde individual e familiar</a></li>
+          <li><a href="plano-de-saude-empresarial.html">Saúde empresarial e MEI</a></li>
+          <li><a href="plano-de-saude-individual.html#adesao">Planos por adesão</a></li>
+          <li><a href="plano-odontologico.html">Plano odontológico</a></li>
+          <li><a href="seguro-de-vida.html">Seguro de vida</a></li>
         </ul>
-      </div>
+      </nav>
+      <nav aria-labelledby="rodape-operadoras">
+        <h2 class="footer-titulo" id="rodape-operadoras">Operadoras</h2>
+        <ul class="footer-links">
+          <li><a href="index.html#operadoras">Amil</a></li>
+          <li><a href="index.html#operadoras">Bradesco Saúde</a></li>
+          <li><a href="index.html#operadoras">SulAmérica</a></li>
+          <li><a href="index.html#operadoras">Hapvida</a></li>
+          <li><a href="index.html#operadoras">Tempo Med</a></li>
+          <li><a href="index.html#operadoras">Unimed</a></li>
+        </ul>
+      </nav>
     </div>
     <div class="footer-bottom">
-      <span>Direcional Corretora de Seguros Ltda. — © 2026. Todos os direitos reservados.</span>
-      <div class="social-row">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Facebook">FB</a>
-        <a href="#" aria-label="YouTube">YT</a>
-      </div>
+      <span>© 2026 Direcional Corretora de Seguros e Saúde. Todos os direitos reservados.</span>
+      <a class="footer-social" href="#" data-contato="instagram" data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram da Direcional"><svg class="ico" aria-hidden="true"><use href="#i-camera"/></svg></a>
     </div>
   </div>
 </footer>
