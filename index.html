@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direcional Corretora — Planos de Saúde e Seguros</title>
+<meta name="description" content="Encontre o plano de saúde e o seguro ideal pra você, sua família ou sua empresa. Cotação rápida e atendimento humano, sem letra miúda.">
+<link rel="icon" href="assets/logo-placeholder.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="#topo"><img class="logo-mark" src="assets/logo-placeholder.svg" alt="Direcional Corretora"></a>
+    <nav class="main-nav">
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Planos e Seguros</a>
+      <a href="#por-que">Por que a Direcional</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#cotacao">Fale Conosco</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary" href="#cotacao">Solicitar Cotação</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <span class="hero-badge">● Atendimento humano, sem robô</span>
+      <h1>Cuidado Que <em>Cabe</em> Em Você</h1>
+      <p class="lede">
+        Comparamos as melhores operadoras de plano de saúde e seguros pra você,
+        sua família ou sua empresa — e cuidamos de toda a burocracia enquanto
+        você foca no que importa.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#cotacao">Quero Minha Cotação</a>
+        <a class="btn btn-ghost" href="#produtos">Ver planos e seguros</a>
+      </div>
+      <div class="hero-trust">
+        <div><b><!-- PLACEHOLDER: anos de atuação real --> +X</b>anos de experiência</div>
+        <div><b><!-- PLACEHOLDER: nº real de clientes --> +X mil</b>vidas protegidas</div>
+        <div><b>3+</b>operadoras parceiras</div>
+      </div>
+    </div>
+
+    <form class="quote-card" id="quoteForm">
+      <h3>Solicite uma cotação grátis</h3>
+      <p class="lede">Resposta em até 1 dia útil, sem compromisso.</p>
+
+      <div class="field">
+        <label for="tipoPlano">Tipo de plano</label>
+        <select id="tipoPlano" required>
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option>Individual ou Familiar</option>
+          <option>Empresa até 29 vidas</option>
+          <option>Empresa acima de 30 vidas</option>
+          <option>Seguro de Vida</option>
+          <option>Seguro Auto</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" placeholder="Seu nome completo" required>
+      </div>
+      <div class="field">
+        <label for="whatsapp">WhatsApp</label>
+        <input id="whatsapp" type="tel" placeholder="(48) 9XXXX-XXXX" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Quero minha cotação →</button>
+      <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp pra finalizar com um consultor.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ OPERADORAS ============ -->
+<section class="partners">
+  <div class="wrap">
+    <span class="partners-label">Trabalhamos com as principais operadoras do país:</span>
+    <div class="partner-badges">
+      <span class="badge">Amil</span>
+      <span class="badge">Bradesco Saúde</span>
+      <span class="badge">SulAmérica</span>
+      <span class="badge">Tempo Med</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUTOS ============ -->
+<section class="section" id="produtos">
+  <div class="wrap">
+    <span class="eyebrow">O que cobrimos</span>
+    <h2 class="h2">Um plano pra cada momento da sua vida</h2>
+    <p class="lede">Do individual ao corporativo — montamos a opção que cabe no seu bolso e na sua necessidade real.</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="icon">❤</div>
+        <h4>Plano de Saúde</h4>
+        <p>Individual, familiar ou empresarial, nas principais operadoras do país.</p>
+      </div>
+      <div class="product-card">
+        <div class="icon">🛡</div>
+        <h4>Seguro de Vida</h4>
+        <p>Proteção financeira pra quem depende de você, com cobertura sob medida.</p>
+      </div>
+      <div class="product-card">
+        <div class="icon">🚗</div>
+        <h4>Seguro Auto</h4>
+        <p>Cotação em minutas comparando as melhores seguradoras do mercado.</p>
+      </div>
+      <a href="#" class="product-card more">
+        <h4>+ Mais Seguros</h4>
+        <p>Viagem, incêndio, condomínio, engenharia e mais.</p>
+        <a href="#cotacao">Ver lista completa →</a>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAIS ============ -->
+<section class="why" id="por-que">
+  <div class="wrap">
+    <span class="eyebrow">Por que a Direcional</span>
+    <h2 class="h2">3 motivos pra cotar com a gente</h2>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="num">01</span>
+        <h4>Atendimento Humano Real</h4>
+        <p>Um consultor dedicado te acompanha do primeiro contato até a implantação — nada de fila de robô.</p>
+      </div>
+      <div class="why-item">
+        <span class="num">02</span>
+        <h4>Comparamos Por Você</h4>
+        <p>Analisamos as principais operadoras e trazemos a opção com melhor custo-benefício real pro seu caso.</p>
+      </div>
+      <div class="why-item">
+        <span class="num">03</span>
+        <h4>Suporte No Pós-Venda</h4>
+        <p>Dúvida com sinistro, reembolso ou boleto? Continuamos com você depois que o contrato é assinado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="section" id="depoimentos">
+  <div class="wrap">
+    <span class="eyebrow">Quem já confia</span>
+    <h2 class="h2">O que nossos clientes dizem</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Depoimento de exemplo — substituir por um relato real de cliente antes de publicar."</p>
+        <div class="who">
+          <div class="avatar">??</div>
+          <div><b>Nome do cliente</b><span>Plano Individual</span></div>
+        </div>
+        <span class="placeholder-flag">placeholder</span>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Depoimento de exemplo — substituir por um relato real de cliente antes de publicar."</p>
+        <div class="who">
+          <div class="avatar">??</div>
+          <div><b>Nome do cliente</b><span>Plano Empresarial</span></div>
+        </div>
+        <span class="placeholder-flag">placeholder</span>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Depoimento de exemplo — substituir por um relato real de cliente antes de publicar."</p>
+        <div class="who">
+          <div class="avatar">??</div>
+          <div><b>Nome do cliente</b><span>Seguro de Vida</span></div>
+        </div>
+        <span class="placeholder-flag">placeholder</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2 class="h2">Pronto pra ter um plano que faz sentido?</h2>
+    <p class="lede">Fale agora com um consultor e receba sua cotação sem compromisso.</p>
+    <a class="btn btn-primary" href="#cotacao">Solicitar Cotação Agora</a>
+  </div>
+</section>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="site-footer" id="cotacao">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/logo-placeholder.svg" alt="Direcional Corretora">
+        <p><!-- PLACEHOLDER: endereço real --> Florianópolis, SC</p>
+        <p style="margin-top:8px;"><!-- PLACEHOLDER: WhatsApp real --> WhatsApp: (48) 9XXXX-XXXX</p>
+      </div>
+      <div>
+        <h5>A Direcional</h5>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#por-que">Sobre nós</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Produtos</h5>
+        <ul>
+          <li><a href="#produtos">Plano de Saúde</a></li>
+          <li><a href="#produtos">Seguro de Vida</a></li>
+          <li><a href="#produtos">Seguro Auto</a></li>
+          <li><a href="#produtos">Seguro Viagem</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Fale Conosco</h5>
+        <ul>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">E-mail</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Direcional Corretora de Seguros Ltda. — © 2026. Todos os direitos reservados.</span>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="#" id="waFloat" aria-label="Falar no WhatsApp" target="_blank" rel="noopener">💬</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
