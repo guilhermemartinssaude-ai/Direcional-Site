@@ -674,6 +674,9 @@ button{font-family:inherit; cursor:pointer;}
 .destino-whats .icone-box .ico{stroke:currentColor; width:28px; height:28px;}
 .destino-whats:hover .icone-box{background:rgba(255,255,255,.12); transform:none;}
 .destino-whats:hover .icone-box .ico{animation:balancar .6s ease-in-out 2;}
+@media (max-width:1000px){
+  .destinos > li{flex-basis:calc(50% - 9px); max-width:none;}
+}
 @media (max-width:560px){
   .destinos > li{flex-basis:100%; max-width:none;}
   .destino{min-height:0; flex-direction:row; align-items:center;}
