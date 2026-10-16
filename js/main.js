@@ -264,6 +264,11 @@ function initForm() {
     waFloat.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Quero saber mais sobre planos de saúde e seguros.")}`;
   }
 
+  const tipoPagina = document.body.dataset.tipo;
+  document.querySelectorAll(".form-cotacao").forEach((form) => {
+    if (tipoPagina) form.elements.tipo.value = tipoPagina;
+  });
+
   document.querySelectorAll(".form-cotacao").forEach((form) =>
     form.addEventListener("submit", (e) => {
       e.preventDefault();
