@@ -122,12 +122,13 @@ const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").mat
 
 /* ---------- Entrada ao rolar (uma vez só, em cascata nos grupos) ---------- */
 function initReveal() {
-  document.querySelectorAll("[data-stagger]").forEach((grupo) =>
+  document.querySelectorAll("[data-stagger]").forEach((grupo) => {
+    const passo = Number(grupo.dataset.stagger) || 100;
     [...grupo.children].forEach((filho, i) => {
       filho.setAttribute("data-reveal", "");
-      filho.style.setProperty("--d", `${i * 100}ms`);
-    })
-  );
+      filho.style.setProperty("--d", `${i * passo}ms`);
+    });
+  });
   const els = [...document.querySelectorAll("[data-reveal]")];
   const terminar = (el) => {
     el.removeAttribute("data-reveal");
