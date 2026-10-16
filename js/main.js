@@ -1,5 +1,47 @@
-// PLACEHOLDER: troque pelo número real de WhatsApp da Direcional (formato internacional, só dígitos)
-const WHATSAPP_NUMBER = "5548900000000";
+// Os dados de contato ficam em js/config.js (objeto CONTATO)
+const C = typeof CONTATO === "object" ? CONTATO : {};
+const MSG_WHATS_PADRAO = "Olá! Vim pelo site da Direcional e quero falar com um consultor.";
+
+const soDigitos = (s) => String(s || "").replace(/\D/g, "");
+const linkWhats = (texto = MSG_WHATS_PADRAO, numero = C.whatsappPrincipal) =>
+  `https://wa.me/${soDigitos(numero)}?text=${encodeURIComponent(texto)}`;
+
+function formatarTelefone(s) {
+  let d = soDigitos(s);
+  if (d.length > 11 && d.startsWith("55")) d = d.slice(2);
+  if (d.length === 11) return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+  if (d.length === 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+  return String(s || "");
+}
+
+/* ---------- Dados de contato: preenche e esconde o que estiver vazio ---------- */
+function initContato() {
+  const href = {
+    whatsappPrincipal: () => linkWhats(),
+    telefone: () => `tel:+55${soDigitos(C.telefone).replace(/^55/, "")}`,
+    email: () => `mailto:${C.email}`,
+    instagram: () => C.instagram,
+    mapsUrl: () => C.mapsUrl,
+    endereco: () => C.mapsUrl,
+  };
+  const texto = {
+    whatsappPrincipal: () => formatarTelefone(C.whatsappPrincipal),
+    telefone: () => formatarTelefone(C.telefone),
+  };
+  const vazio = (campo) => !String(C[campo] || "").trim();
+
+  document.querySelectorAll("[data-contato]").forEach((el) => {
+    if (el.dataset.contato.split(" ").some(vazio)) el.hidden = true;
+  });
+  document.querySelectorAll("[data-href]").forEach((el) => {
+    const campo = el.dataset.href;
+    if (!vazio(campo) && href[campo]) el.href = href[campo]();
+  });
+  document.querySelectorAll("[data-texto]").forEach((el) => {
+    const campo = el.dataset.texto;
+    if (!vazio(campo)) el.textContent = texto[campo] ? texto[campo]() : C[campo];
+  });
+}
 
 /* ---------- Cabeçalho: fundo sólido após 50px ---------- */
 function initHeader() {
@@ -259,11 +301,6 @@ function initImgFallback() {
 
 /* ---------- Formulário de cotação ---------- */
 function initForm() {
-  const waFloat = document.getElementById("waFloat");
-  if (waFloat) {
-    waFloat.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Quero saber mais sobre planos de saúde e seguros.")}`;
-  }
-
   const tipoPagina = document.body.dataset.tipo;
   document.querySelectorAll(".form-cotacao").forEach((form) => {
     if (tipoPagina) form.elements.tipo.value = tipoPagina;
@@ -283,15 +320,13 @@ function initForm() {
         `Olá! Meu nome é ${nome} e quero uma cotação de: ${tipo}.\n` +
         `Meu WhatsApp pra contato: ${whatsapp}`;
 
-      window.open(
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`,
-        "_blank"
-      );
+      window.open(linkWhats(mensagem), "_blank");
     })
   );
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initContato();
   initImgFallback();
   initHeader();
   initMenu();

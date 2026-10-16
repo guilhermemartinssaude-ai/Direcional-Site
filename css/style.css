@@ -639,6 +639,17 @@ button{font-family:inherit; cursor:pointer;}
 }
 @media (max-width:760px){ .comparativo{grid-template-columns:1fr;} }
 
+/* ---------- Texto corrido (política de privacidade) ---------- */
+.prosa{max-width:760px; margin-inline:auto;}
+.prosa h2{font-size:24px; margin-top:44px;}
+.prosa h2:first-child{margin-top:0;}
+.prosa p, .prosa li{font-size:17px; color:var(--texto-suave); margin-top:14px;}
+.prosa ul{margin-top:8px;}
+.prosa ul li{position:relative; padding-left:22px; margin-top:8px;}
+.prosa ul li::before{content:""; position:absolute; left:4px; top:.65em; width:7px; height:7px; border-radius:50%; background:var(--verde);}
+.prosa a{color:var(--azul-botao); font-weight:600; text-decoration:underline; text-underline-offset:3px;}
+.prosa .atualizacao{font-size:14px; margin-top:44px;}
+
 /* ---------- Cotação final ---------- */
 .cotacao-final .quote-card{max-width:820px; margin-inline:auto; padding:36px; box-shadow:var(--sombra-forte);}
 @media (max-width:640px){ .cotacao-final .quote-card{padding:24px 18px;} }
