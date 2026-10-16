@@ -287,6 +287,17 @@ function initToTop() {
   });
 }
 
+/* ---------- "Para onde você quer ir?": esconde o cartão da própria página ---------- */
+function initParaOnde() {
+  const arquivo = (caminho) => caminho.split("/").pop() || "index.html";
+  const atual = arquivo(location.pathname);
+  document.querySelectorAll(".destinos a[href]").forEach((a) => {
+    const href = a.getAttribute("href");
+    if (href.includes("#") || href.startsWith("http")) return; // âncoras e WhatsApp continuam
+    if (arquivo(href) === atual) a.closest("li").hidden = true;
+  });
+}
+
 /* ---------- Imagens que ainda não existem: esconde e mostra o fallback ---------- */
 function initImgFallback() {
   const fail = (img) => {
@@ -403,6 +414,7 @@ function initForm() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initContato();
+  initParaOnde();
   initImgFallback();
   initHeader();
   initMenu();
