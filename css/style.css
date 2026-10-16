@@ -84,6 +84,55 @@ button{font-family:inherit; cursor:pointer;}
 .btn-ghost:hover{background:rgba(255,255,255,.08); border-color:var(--branco);}
 .btn-block{width:100%;}
 
+/* Texto que rola: sai por cima, a cópia entra por baixo; fundo vai para o verde.
+   Texto escuro sobre o verde para manter contraste AA. */
+.btn-roll{position:relative; overflow:hidden; white-space:nowrap; transition:background-color .3s ease;}
+.btn-roll:hover, .btn-roll:focus-visible{background:var(--verde); filter:none;}
+.btn-roll .roll-txt{display:block; transition:transform .3s cubic-bezier(.6,0,.3,1);}
+.btn-roll .roll-txt + .roll-txt{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:var(--azul-profundo); transform:translateY(100%);
+}
+.btn-roll:hover .roll-txt:first-child,
+.btn-roll:focus-visible .roll-txt:first-child{transform:translateY(-200%);}
+.btn-roll:hover .roll-txt + .roll-txt,
+.btn-roll:focus-visible .roll-txt + .roll-txt{transform:translateY(0);}
+
+/* WhatsApp: verde, no hover fica azul-profundo com o ícone balançando */
+.btn-whats{
+  background:var(--whatsapp); color:var(--azul-profundo);
+  box-shadow:inset 0 0 0 2px var(--whatsapp);
+  transition:background-color .25s ease, color .25s ease;
+}
+.btn-whats .ico{width:20px; height:20px; stroke:currentColor; stroke-width:2;}
+.btn-whats:hover{background:var(--azul-profundo); color:var(--branco);}
+.btn-whats:hover .ico{animation:balancar .6s ease-in-out 2;}
+@keyframes balancar{
+  0%,100%{rotate:0deg;}
+  25%{rotate:-14deg;}
+  75%{rotate:12deg;}
+}
+
+/* Pílula de contato (rodapé): fundo clareia e ícone desliza 3px */
+.btn-pill{
+  display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border-radius:999px;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.18);
+  color:var(--branco); font-weight:600; font-size:14px;
+  transition:background-color .2s ease;
+}
+.btn-pill .ico{width:18px; height:18px; stroke:var(--verde); transition:transform .2s ease;}
+.btn-pill:hover{background:rgba(255,255,255,.16);}
+.btn-pill:hover .ico{transform:translateX(3px);}
+
+/* Links com seta ("Quero cotar →", "Saiba mais →") */
+.link-seta{
+  display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:15px;
+  color:var(--azul-botao);
+}
+.link-seta .ico{width:18px; height:18px; stroke:currentColor; stroke-width:2.2; transition:transform .2s ease;}
+.link-seta:hover .ico{transform:translateX(5px);}
+.link-seta:hover{text-decoration:underline; text-underline-offset:4px;}
+
 /* ---------- Marca (logo + nome) ---------- */
 .brand{display:flex; align-items:center; gap:10px; color:var(--texto-sobre-escuro);}
 .brand-logo{height:42px; width:auto;}
@@ -400,6 +449,17 @@ button{font-family:inherit; cursor:pointer;}
   box-shadow:0 14px 30px -10px rgba(37,211,102,.6);
 }
 .wa-float .ico{width:28px; height:28px; stroke-width:2;}
+/* anel que pulsa suavemente a cada 4 segundos */
+.wa-float::before{
+  content:""; position:absolute; inset:0; border-radius:50%;
+  border:2px solid var(--whatsapp); opacity:0;
+  animation:anel-whats 4s ease-out infinite;
+}
+@keyframes anel-whats{
+  0%{transform:scale(1); opacity:.75;}
+  35%{transform:scale(1.55); opacity:0;}
+  100%{transform:scale(1.55); opacity:0;}
+}
 
 /* =========================================================
    Movimento reduzido: tudo parado, tudo visível
