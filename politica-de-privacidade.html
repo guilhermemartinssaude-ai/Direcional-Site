@@ -168,7 +168,7 @@
 <!-- ============ COTAÇÃO ============ -->
 <section class="section section-alt cotacao-final" id="cotacao" aria-label="Solicitar cotação">
   <div class="wrap">
-    <!-- FORMULARIO:INICIO -->
+    <!-- FORMULARIO:INICIO (componente de cotação; o tipo é pré-selecionado pelo data-tipo do <body>, por ?tipo= ou por links com data-tipo) -->
       <form class="quote-card form-cotacao" novalidate>
         <h2 class="form-titulo">Solicite uma cotação grátis</h2>
         <p class="lede">Resposta rápida, todos os dias, sem compromisso.</p>
@@ -188,9 +188,25 @@
           <label class="field"><span>WhatsApp</span>
             <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(48) 99999-9999" maxlength="15" required>
           </label>
+          <label class="field"><span>Você tem CNPJ ou MEI?</span>
+            <select name="cnpj">
+              <option value="" selected>Selecione</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </label>
+          <label class="field"><span>Quantas pessoas?</span>
+            <input name="pessoas" type="number" min="1" max="999" inputmode="numeric" placeholder="Ex.: 3">
+          </label>
+          <label class="field"><span>Cidade</span>
+            <input name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Florianópolis">
+          </label>
+          <label class="field"><span>Você tem plano hoje? Qual?</span>
+            <input name="plano_atual" type="text" placeholder="Ex.: Unimed, Bradesco, nenhum">
+          </label>
         </div>
         <button type="submit" class="btn btn-primary btn-block btn-roll"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></button>
-        <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor.</p>
+        <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor. Seus dados são usados só para a sua cotação. <a href="politica-de-privacidade.html">Política de privacidade</a></p>
       </form>
       <!-- FORMULARIO:FIM -->
   </div>

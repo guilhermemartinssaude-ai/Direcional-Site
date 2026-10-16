@@ -300,29 +300,105 @@ function initImgFallback() {
 }
 
 /* ---------- Formulário de cotação ---------- */
+const TIPOS = ["individual", "empresa", "odonto", "vida"];
+
+// Máscara (48) 99999-9999
+function mascaraWhats(valor) {
+  const d = soDigitos(valor).slice(0, 11);
+  if (d.length <= 2) return d.length ? `(${d}` : "";
+  if (d.length <= 7) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+
 function initForm() {
-  const tipoPagina = document.body.dataset.tipo;
-  document.querySelectorAll(".form-cotacao").forEach((form) => {
-    if (tipoPagina) form.elements.tipo.value = tipoPagina;
+  const forms = [...document.querySelectorAll(".form-cotacao")];
+  if (!forms.length) return;
+
+  // Pré-seleção do tipo: link clicado > ?tipo= (na URL ou depois de #cotacao) > data-tipo da página
+  const selecionarTipo = (tipo) => {
+    if (TIPOS.includes(tipo)) forms.forEach((f) => (f.elements.tipo.value = tipo));
+  };
+  const tipoDaUrl = () => {
+    const daBusca = new URLSearchParams(location.search).get("tipo");
+    const doHash = (location.hash.split("?")[1] || "") && new URLSearchParams(location.hash.split("?")[1]).get("tipo");
+    return doHash || daBusca;
+  };
+  selecionarTipo(document.body.dataset.tipo);
+  selecionarTipo(tipoDaUrl());
+  // "#cotacao?tipo=empresa" não é um id válido: rola até o formulário
+  if (location.hash.startsWith("#cotacao?")) document.getElementById("cotacao")?.scrollIntoView();
+  window.addEventListener("hashchange", () => selecionarTipo(tipoDaUrl()));
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a[data-tipo]");
+    if (link) selecionarTipo(link.dataset.tipo);
   });
 
-  document.querySelectorAll(".form-cotacao").forEach((form) =>
+  let seq = 0;
+  forms.forEach((form) => {
+    const campos = form.elements;
+
+    // Mensagem de erro ligada a cada campo obrigatório
+    const erro = (campo) => {
+      let el = campo.parentElement.querySelector(".field-erro");
+      if (!el) {
+        el = document.createElement("small");
+        el.className = "field-erro";
+        el.id = `erro-${++seq}`;
+        el.hidden = true;
+        campo.parentElement.append(el);
+        campo.setAttribute("aria-describedby", el.id);
+      }
+      return el;
+    };
+    const marcar = (campo, msg) => {
+      const el = erro(campo);
+      el.textContent = msg || "";
+      el.hidden = !msg;
+      campo.toggleAttribute("aria-invalid", !!msg);
+      return !msg;
+    };
+    const validar = {
+      tipo: (c) => marcar(c, c.value ? "" : "Escolha o tipo de plano."),
+      nome: (c) => marcar(c, c.value.trim() ? "" : "Informe o seu nome."),
+      whatsapp: (c) => marcar(c, soDigitos(c.value).length === 11 ? "" : "Informe o WhatsApp com DDD, 11 números."),
+    };
+
+    campos.whatsapp.addEventListener("input", (e) => {
+      e.target.value = mascaraWhats(e.target.value);
+    });
+    Object.keys(validar).forEach((nome) => {
+      const c = campos[nome];
+      const ev = c.tagName === "SELECT" ? "change" : "blur";
+      c.addEventListener(ev, () => c.hasAttribute("aria-invalid") || c.value ? validar[nome](c) : null);
+      c.addEventListener("input", () => c.hasAttribute("aria-invalid") && validar[nome](c));
+    });
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (!form.reportValidity()) return;
+      const invalidos = Object.keys(validar).filter((nome) => !validar[nome](campos[nome]));
+      if (invalidos.length) {
+        campos[invalidos[0]].focus();
+        return;
+      }
 
-      const sel = form.elements.tipo;
-      const tipo = sel.options[sel.selectedIndex].text;
-      const nome = form.elements.nome.value.trim();
-      const whatsapp = form.elements.whatsapp.value.trim();
+      const sel = campos.tipo;
+      const linhas = [
+        ["Tipo de plano", sel.options[sel.selectedIndex].text],
+        ["Nome", campos.nome.value],
+        ["WhatsApp", campos.whatsapp.value],
+        ["Tem CNPJ ou MEI", campos.cnpj.value],
+        ["Quantas pessoas", campos.pessoas.value],
+        ["Cidade", campos.cidade.value],
+        ["Plano atual", campos.plano_atual.value],
+      ]
+        .map(([rotulo, valor]) => [rotulo, String(valor).trim()])
+        .filter(([, valor]) => valor)
+        .map(([rotulo, valor]) => `${rotulo}: ${valor}`);
 
-      const mensagem =
-        `Olá! Meu nome é ${nome} e quero uma cotação de: ${tipo}.\n` +
-        `Meu WhatsApp pra contato: ${whatsapp}`;
-
-      window.open(linkWhats(mensagem), "_blank");
-    })
-  );
+      const mensagem = ["Olá! Vim pelo site da Direcional e quero uma cotação.", ...linhas].join("\n");
+      window.open(linkWhats(mensagem), "_blank", "noopener");
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

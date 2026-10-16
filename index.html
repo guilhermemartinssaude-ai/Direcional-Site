@@ -138,7 +138,7 @@
         <rect class="f3" x="300" y="290" width="70" height="70" rx="20" fill="none" stroke="#00AFF0" stroke-width="2" opacity=".5" transform="rotate(18 335 325)"/>
         <circle class="f4" cx="60" cy="50" r="10" fill="#00BFA5" opacity=".7"/>
       </svg>
-      <!-- FORMULARIO:INICIO -->
+      <!-- FORMULARIO:INICIO (componente de cotação; o tipo é pré-selecionado pelo data-tipo do <body>, por ?tipo= ou por links com data-tipo) -->
       <form class="quote-card form-cotacao" novalidate>
         <h2 class="form-titulo">Solicite uma cotação grátis</h2>
         <p class="lede">Resposta rápida, todos os dias, sem compromisso.</p>
@@ -158,9 +158,25 @@
           <label class="field"><span>WhatsApp</span>
             <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(48) 99999-9999" maxlength="15" required>
           </label>
+          <label class="field"><span>Você tem CNPJ ou MEI?</span>
+            <select name="cnpj">
+              <option value="" selected>Selecione</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </label>
+          <label class="field"><span>Quantas pessoas?</span>
+            <input name="pessoas" type="number" min="1" max="999" inputmode="numeric" placeholder="Ex.: 3">
+          </label>
+          <label class="field"><span>Cidade</span>
+            <input name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Florianópolis">
+          </label>
+          <label class="field"><span>Você tem plano hoje? Qual?</span>
+            <input name="plano_atual" type="text" placeholder="Ex.: Unimed, Bradesco, nenhum">
+          </label>
         </div>
         <button type="submit" class="btn btn-primary btn-block btn-roll"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></button>
-        <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor.</p>
+        <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor. Seus dados são usados só para a sua cotação. <a href="politica-de-privacidade.html">Política de privacidade</a></p>
       </form>
       <!-- FORMULARIO:FIM -->
     </div>
@@ -378,31 +394,47 @@
 <!-- ============ COTAÇÃO ============ -->
 <section class="section section-alt cotacao-final" id="cotacao" aria-label="Solicitar cotação">
   <div class="wrap">
-    <!-- FORMULARIO:INICIO -->
-    <form class="quote-card form-cotacao" novalidate data-reveal>
-      <h2 class="form-titulo">Solicite uma cotação grátis</h2>
-      <p class="lede">Resposta rápida, todos os dias, sem compromisso.</p>
-      <div class="form-grid">
-        <label class="field field-full"><span>Tipo de plano</span>
-          <select name="tipo" required>
-            <option value="" disabled selected>Selecione uma opção</option>
-            <option value="individual">Individual ou familiar</option>
-            <option value="empresa">Empresa ou MEI</option>
-            <option value="odonto">Plano odontológico</option>
-            <option value="vida">Seguro de vida</option>
-          </select>
-        </label>
-        <label class="field"><span>Nome</span>
-          <input name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
-        </label>
-        <label class="field"><span>WhatsApp</span>
-          <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(48) 99999-9999" maxlength="15" required>
-        </label>
-      </div>
-      <button type="submit" class="btn btn-primary btn-block btn-roll"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></button>
-      <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor.</p>
-    </form>
-    <!-- FORMULARIO:FIM -->
+    <!-- FORMULARIO:INICIO (componente de cotação; o tipo é pré-selecionado pelo data-tipo do <body>, por ?tipo= ou por links com data-tipo) -->
+      <form class="quote-card form-cotacao" novalidate>
+        <h2 class="form-titulo">Solicite uma cotação grátis</h2>
+        <p class="lede">Resposta rápida, todos os dias, sem compromisso.</p>
+        <div class="form-grid">
+          <label class="field field-full"><span>Tipo de plano</span>
+            <select name="tipo" required>
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="individual">Individual ou familiar</option>
+              <option value="empresa">Empresa ou MEI</option>
+              <option value="odonto">Plano odontológico</option>
+              <option value="vida">Seguro de vida</option>
+            </select>
+          </label>
+          <label class="field"><span>Nome</span>
+            <input name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
+          </label>
+          <label class="field"><span>WhatsApp</span>
+            <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(48) 99999-9999" maxlength="15" required>
+          </label>
+          <label class="field"><span>Você tem CNPJ ou MEI?</span>
+            <select name="cnpj">
+              <option value="" selected>Selecione</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </label>
+          <label class="field"><span>Quantas pessoas?</span>
+            <input name="pessoas" type="number" min="1" max="999" inputmode="numeric" placeholder="Ex.: 3">
+          </label>
+          <label class="field"><span>Cidade</span>
+            <input name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Florianópolis">
+          </label>
+          <label class="field"><span>Você tem plano hoje? Qual?</span>
+            <input name="plano_atual" type="text" placeholder="Ex.: Unimed, Bradesco, nenhum">
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-roll"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></button>
+        <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor. Seus dados são usados só para a sua cotação. <a href="politica-de-privacidade.html">Política de privacidade</a></p>
+      </form>
+      <!-- FORMULARIO:FIM -->
   </div>
 </section>
 
