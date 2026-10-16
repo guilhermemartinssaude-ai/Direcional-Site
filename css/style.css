@@ -322,10 +322,93 @@ button{font-family:inherit; cursor:pointer;}
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px;
 }
 
+/* =========================================================
+   Movimento e interatividade
+   ========================================================= */
+
+/* Entrada ao rolar (só com JS ativo; o JS remove o atributo ao terminar) */
+.js [data-reveal]{
+  opacity:0; transform:translateY(24px);
+  transition:opacity .6s ease var(--d,0ms), transform .6s cubic-bezier(.2,.7,.2,1) var(--d,0ms);
+}
+.js [data-reveal].is-visible{opacity:1; transform:none;}
+
+/* Ícones SVG de linha no gradiente da marca (sprite no topo de cada página) */
+.sprite{position:absolute; width:0; height:0; overflow:hidden;}
+.ico{
+  width:24px; height:24px; flex-shrink:0;
+  fill:none; stroke:url(#grad-marca); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
+}
+.ico-claro{stroke:currentColor;}
+.icone-box{
+  width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+  background:var(--fundo-claro); border:1px solid var(--linha); margin-bottom:18px;
+  transition:transform .35s ease;
+}
+.icone-box .ico{width:28px; height:28px;}
+.section-alt .icone-box{background:var(--branco);}
+
+/* Cards com hover: sobem, sombra cresce, ícone gira de leve */
+.card-hover{transition:translate .25s ease, box-shadow .25s ease, border-color .25s ease;}
+.card-hover:hover{translate:0 -6px; box-shadow:var(--sombra-forte); border-color:rgba(0,175,240,.45);}
+.card-hover:hover .icone-box{transform:rotate(-8deg) scale(1.06);}
+
+/* Divisória curva entre o hero e a seção seguinte */
+.divisor-curva{
+  position:absolute; left:0; right:0; bottom:-1px; width:100%; height:70px;
+  color:var(--branco); fill:currentColor; pointer-events:none;
+}
+.divisor-curva.para-claro{color:var(--fundo-claro);}
+@media (max-width:640px){ .divisor-curva{height:36px;} }
+
+/* Formas abstratas do hero, flutuando devagar */
+.hero-visual{position:relative;}
+.hero-art{position:absolute; z-index:-1; pointer-events:none; overflow:visible;}
+.hero-art .f1{animation:flutuar 11s ease-in-out infinite;}
+.hero-art .f2{animation:flutuar 14s ease-in-out -3s infinite reverse;}
+.hero-art .f3{animation:flutuar 9s ease-in-out -5s infinite;}
+.hero-art .f4{animation:flutuar 16s ease-in-out -8s infinite reverse;}
+@keyframes flutuar{
+  0%,100%{transform:translate(0,0);}
+  50%{transform:translate(6px,-16px);}
+}
+.hero-art-form{top:-80px; right:-80px; width:calc(100% + 160px); height:calc(100% + 160px);}
+.hero-foto{width:100%; border-radius:24px; box-shadow:0 30px 60px -20px rgba(0,0,0,.45); object-fit:cover;}
+
+/* Contadores */
+.hero-trust .num{font-variant-numeric:tabular-nums;}
+
+/* Voltar ao topo (acima do WhatsApp flutuante) */
+.to-top{
+  position:fixed; right:27px; bottom:92px; z-index:50;
+  width:44px; height:44px; border-radius:50%; border:none;
+  background:var(--azul-profundo); color:var(--branco);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 24px -10px rgba(11,58,92,.6);
+  opacity:0; visibility:hidden; transform:translateY(10px);
+  transition:opacity .25s ease, transform .25s ease, visibility 0s linear .25s, background-color .2s ease;
+}
+.to-top.show{opacity:1; visibility:visible; transform:none; transition:opacity .25s ease, transform .25s ease, background-color .2s ease;}
+.to-top:hover{background:var(--azul-botao);}
+.to-top .ico{width:20px; height:20px;}
+
 /* ---------- WhatsApp flutuante ---------- */
 .wa-float{
   position:fixed; right:20px; bottom:20px; z-index:50;
   width:58px; height:58px; border-radius:50%; background:var(--whatsapp); color:var(--azul-profundo);
-  display:flex; align-items:center; justify-content:center; font-size:26px;
+  display:flex; align-items:center; justify-content:center;
   box-shadow:0 14px 30px -10px rgba(37,211,102,.6);
+}
+.wa-float .ico{width:28px; height:28px; stroke-width:2;}
+
+/* =========================================================
+   Movimento reduzido: tudo parado, tudo visível
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *, *::before, *::after{
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important; transition-delay:0s !important;
+  }
+  .js [data-reveal]{opacity:1; transform:none;}
 }

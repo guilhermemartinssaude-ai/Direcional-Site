@@ -118,6 +118,86 @@ function initActiveNav() {
   sections.forEach((s) => io.observe(s));
 }
 
+const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- Entrada ao rolar (uma vez só, em cascata nos grupos) ---------- */
+function initReveal() {
+  document.querySelectorAll("[data-stagger]").forEach((grupo) =>
+    [...grupo.children].forEach((filho, i) => {
+      filho.setAttribute("data-reveal", "");
+      filho.style.setProperty("--d", `${i * 100}ms`);
+    })
+  );
+  const els = [...document.querySelectorAll("[data-reveal]")];
+  const terminar = (el) => {
+    el.removeAttribute("data-reveal");
+    el.classList.remove("is-visible");
+    el.style.removeProperty("--d");
+  };
+  if (reduzMovimento || !("IntersectionObserver" in window)) {
+    els.forEach(terminar);
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        el.classList.add("is-visible");
+        io.unobserve(el);
+        // Ao terminar, devolve o elemento ao estado normal (libera o hover dos cards)
+        const d = parseInt(el.style.getPropertyValue("--d")) || 0;
+        setTimeout(() => terminar(el), 700 + d);
+      }),
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+  els.forEach((el) => io.observe(el));
+}
+
+/* ---------- Contadores de 0 até o valor ---------- */
+function initCounters() {
+  const els = document.querySelectorAll("[data-count]");
+  if (reduzMovimento || !("IntersectionObserver" in window)) return;
+  const escrever = (el, v) => (el.textContent = (el.dataset.prefix || "") + v.toLocaleString("pt-BR") + (el.dataset.suffix || ""));
+  const animar = (el) => {
+    const alvo = Number(el.dataset.count);
+    const dur = 1400;
+    const t0 = performance.now();
+    const passo = (t) => {
+      const p = Math.min((t - t0) / dur, 1);
+      escrever(el, Math.round(alvo * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(passo);
+    };
+    requestAnimationFrame(passo);
+  };
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        animar(en.target);
+      }),
+    { threshold: 0.6 }
+  );
+  els.forEach((el) => {
+    escrever(el, 0);
+    io.observe(el);
+  });
+}
+
+/* ---------- Voltar ao topo ---------- */
+function initToTop() {
+  const btn = document.getElementById("toTop");
+  if (!btn) return;
+  const update = () => btn.classList.toggle("show", window.scrollY > 600);
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: reduzMovimento ? "auto" : "smooth" });
+    document.querySelector(".brand")?.focus({ preventScroll: true });
+  });
+}
+
 /* ---------- Imagens que ainda não existem: esconde e mostra o fallback ---------- */
 function initImgFallback() {
   const fail = (img) => {
@@ -163,5 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeader();
   initMenu();
   initActiveNav();
+  initReveal();
+  initCounters();
+  initToTop();
   initForm();
 });
