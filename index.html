@@ -11,28 +11,63 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="inicio">
 
-<!-- ============ HEADER ============ -->
-<header class="site-header">
+<!-- CABECALHO:INICIO (manter idêntico em todas as páginas) -->
+<header class="site-header" id="siteHeader">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Direcional Corretora de Seguros e Saúde, página inicial">
       <img class="brand-logo" src="assets/logo-direcional.png" alt="Logo da Direcional" height="42">
       <span class="brand-text"><b>Direcional</b><small>Corretora de Seguros e Saúde</small></span>
     </a>
-    <nav class="main-nav">
-      <a href="#inicio">Início</a>
-      <a href="#produtos">Planos e Seguros</a>
-      <a href="#por-que">Por que a Direcional</a>
-      <a href="#depoimentos">Depoimentos</a>
-      <a href="#cotacao">Fale Conosco</a>
+    <nav class="main-nav" id="mainNav" aria-label="Menu principal">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html" data-nav="inicio">Início</a></li>
+        <li class="has-sub">
+          <button class="nav-link sub-toggle" type="button" data-nav="planos" aria-expanded="false" aria-controls="sub-planos">Planos <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="submenu" id="sub-planos">
+            <li><a href="plano-de-saude-individual.html">Saúde Individual e Familiar</a></li>
+            <li><a href="plano-de-saude-empresarial.html">Saúde Empresarial e MEI</a></li>
+            <li><a href="plano-de-saude-individual.html#adesao">Planos por Adesão</a></li>
+            <li><a href="plano-odontologico.html">Plano Odontológico</a></li>
+            <li><a href="seguro-de-vida.html">Seguro de Vida</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <button class="nav-link sub-toggle" type="button" data-nav="operadoras" aria-expanded="false" aria-controls="sub-operadoras">Operadoras <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="submenu" id="sub-operadoras">
+            <li><a href="index.html#operadoras">Amil</a></li>
+            <li><a href="index.html#operadoras">Bradesco Saúde</a></li>
+            <li><a href="index.html#operadoras">SulAmérica</a></li>
+            <li><a href="index.html#operadoras">Hapvida</a></li>
+            <li><a href="index.html#operadoras">Tempo Med</a></li>
+            <li><a href="index.html#operadoras">Unimed</a></li>
+          </ul>
+        </li>
+        <li class="has-sub">
+          <button class="nav-link sub-toggle" type="button" data-nav="sobre" aria-expanded="false" aria-controls="sub-sobre">Sobre nós <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="submenu" id="sub-sobre">
+            <li><a href="quem-somos.html">Quem somos</a></li>
+            <li><a href="quem-somos.html#trajetoria">Nossa trajetória</a></li>
+            <!-- Para ativar, remova hidden deste item junto com a seção #equipe de quem-somos.html -->
+            <li hidden><a href="quem-somos.html#equipe">Nossa equipe</a></li>
+            <li><a href="index.html#clientes">Empresas que confiam</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" href="index.html#duvidas" data-nav="duvidas">Dúvidas</a></li>
+        <li class="nav-cta-mobile"><a class="btn btn-primary btn-block" href="#cotacao">Solicitar Cotação</a></li>
+      </ul>
     </nav>
     <div class="header-actions">
       <a class="btn btn-primary" href="#cotacao">Solicitar Cotação</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+        <svg class="ico-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </div>
 </header>
+<!-- CABECALHO:FIM -->
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="inicio">
