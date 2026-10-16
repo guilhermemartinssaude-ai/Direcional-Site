@@ -49,6 +49,7 @@
 <!-- ICONES:FIM -->
 
 <!-- CABECALHO:INICIO (manter idêntico em todas as páginas) -->
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="site-header" id="siteHeader">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Direcional Corretora de Seguros e Saúde, página inicial">
@@ -104,20 +105,22 @@
 </header>
 <!-- CABECALHO:FIM -->
 
+<main id="conteudo">
+
 <!-- ============ HERO ============ -->
 <section class="hero" id="inicio">
   <div class="wrap">
     <div>
-      <span class="hero-badge">● Atendimento humano, sem robô</span>
+      <span class="hero-badge"><span class="ponto-pulso" aria-hidden="true"></span>Atendimento 100% humano, sem robô</span>
       <h1>Cuidado Que <em>Cabe</em> Em Você</h1>
       <p class="lede">
         Comparamos as melhores operadoras de plano de saúde e seguros pra você,
-        sua família ou sua empresa — e cuidamos de toda a burocracia enquanto
+        sua família ou sua empresa, e cuidamos de toda a burocracia enquanto
         você foca no que importa.
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-roll" href="#cotacao"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></a>
-        <a class="btn btn-ghost" href="#produtos">Ver planos e seguros</a>
+        <a class="btn btn-ghost" href="#produtos">Ver planos</a>
       </div>
       <div class="hero-trust">
         <div><b><span class="num" data-count="10" data-suffix=" anos">10 anos</span></b>de mercado</div>
@@ -127,166 +130,286 @@
     </div>
 
     <div class="hero-visual">
-    <!-- FOTO HERO: descomentar quando a foto existir -->
-    <!-- <img class="hero-foto" src="assets/fotos/equipe-hero.jpg" alt="Equipe da Direcional Corretora de Seguros e Saúde"> -->
-    <svg class="hero-art hero-art-form" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
-      <circle class="f1" cx="330" cy="70" r="70" fill="url(#grad-marca)" opacity=".35"/>
-      <circle class="f2" cx="40" cy="330" r="46" fill="none" stroke="#00BFA5" stroke-width="2" opacity=".55"/>
-      <rect class="f3" x="300" y="290" width="70" height="70" rx="20" fill="none" stroke="#00AFF0" stroke-width="2" opacity=".5" transform="rotate(18 335 325)"/>
-      <circle class="f4" cx="60" cy="50" r="10" fill="#00BFA5" opacity=".7"/>
-    </svg>
-    <form class="quote-card" id="quoteForm">
-      <h3>Solicite uma cotação grátis</h3>
-      <p class="lede">Resposta em até 1 dia útil, sem compromisso.</p>
-
-      <div class="field">
-        <label for="tipoPlano">Tipo de plano</label>
-        <select id="tipoPlano" required>
-          <option value="" disabled selected>Selecione uma opção</option>
-          <option>Individual ou Familiar</option>
-          <option>Empresa até 29 vidas</option>
-          <option>Empresa acima de 30 vidas</option>
-          <option>Seguro de Vida</option>
-          <option>Seguro Auto</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="nome">Nome</label>
-        <input id="nome" type="text" placeholder="Seu nome completo" required>
-      </div>
-      <div class="field">
-        <label for="whatsapp">WhatsApp</label>
-        <input id="whatsapp" type="tel" placeholder="(48) 9XXXX-XXXX" required>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-block btn-roll"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></button>
-      <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp pra finalizar com um consultor.</p>
-    </form>
+      <!-- FOTO HERO: descomentar quando a foto existir -->
+      <!-- <img class="hero-foto" src="assets/fotos/equipe-hero.jpg" alt="Equipe da Direcional Corretora de Seguros e Saúde"> -->
+      <svg class="hero-art hero-art-form" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+        <circle class="f1" cx="330" cy="70" r="70" fill="url(#grad-marca)" opacity=".35"/>
+        <circle class="f2" cx="40" cy="330" r="46" fill="none" stroke="#00BFA5" stroke-width="2" opacity=".55"/>
+        <rect class="f3" x="300" y="290" width="70" height="70" rx="20" fill="none" stroke="#00AFF0" stroke-width="2" opacity=".5" transform="rotate(18 335 325)"/>
+        <circle class="f4" cx="60" cy="50" r="10" fill="#00BFA5" opacity=".7"/>
+      </svg>
+      <!-- FORMULARIO:INICIO -->
+      <form class="quote-card form-cotacao" novalidate>
+        <h2 class="form-titulo">Solicite uma cotação grátis</h2>
+        <p class="lede">Resposta rápida, todos os dias, sem compromisso.</p>
+        <div class="form-grid">
+          <label class="field field-full"><span>Tipo de plano</span>
+            <select name="tipo" required>
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="individual">Individual ou familiar</option>
+              <option value="empresa">Empresa ou MEI</option>
+              <option value="odonto">Plano odontológico</option>
+              <option value="vida">Seguro de vida</option>
+            </select>
+          </label>
+          <label class="field"><span>Nome</span>
+            <input name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
+          </label>
+          <label class="field"><span>WhatsApp</span>
+            <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(48) 99999-9999" maxlength="15" required>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-roll"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></button>
+        <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor.</p>
+      </form>
+      <!-- FORMULARIO:FIM -->
     </div>
   </div>
   <svg class="divisor-curva" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 58C240 96 520 96 760 68S1200 6 1440 34V90H0Z"/></svg>
 </section>
 
 <!-- ============ OPERADORAS ============ -->
-<section class="partners">
-  <div class="wrap">
-    <span class="partners-label">Trabalhamos com as principais operadoras do país:</span>
-    <div class="partner-badges">
-      <span class="badge">Amil</span>
-      <span class="badge">Bradesco Saúde</span>
-      <span class="badge">SulAmérica</span>
-      <span class="badge">Tempo Med</span>
-    </div>
+<!-- OPERADORAS:INICIO (bloco reutilizado nas páginas de plano individual e empresarial) -->
+<section class="section operadoras" id="operadoras" aria-labelledby="operadoras-titulo">
+  <div class="wrap center sec-topo">
+    <h2 class="h2" id="operadoras-titulo" data-reveal>Trabalhamos com as principais operadoras do país</h2>
+    <p class="lede" data-reveal>Comparamos as opções de cada uma para encontrar o plano certo para você ou para a sua empresa.</p>
+  </div>
+  <div class="marquee" data-reveal>
+    <ul class="marquee-track">
+      <li class="logo-card" data-fallback><img src="assets/operadoras/amil.png" alt="Logo da Amil" loading="lazy"><span>Amil</span></li>
+      <li class="logo-card" data-fallback><img src="assets/operadoras/bradesco-saude.png" alt="Logo da Bradesco Saúde" loading="lazy"><span>Bradesco Saúde</span></li>
+      <li class="logo-card" data-fallback><img src="assets/operadoras/sulamerica.png" alt="Logo da SulAmérica" loading="lazy"><span>SulAmérica</span></li>
+      <li class="logo-card" data-fallback><img src="assets/operadoras/hapvida.png" alt="Logo da Hapvida" loading="lazy"><span>Hapvida</span></li>
+      <li class="logo-card" data-fallback><img src="assets/operadoras/tempomed.png" alt="Logo da Tempo Med" loading="lazy"><span>Tempo Med</span></li>
+      <li class="logo-card" data-fallback><img src="assets/operadoras/unimed.png" alt="Logo da Unimed" loading="lazy"><span>Unimed</span></li>
+      <!-- cópia para o movimento contínuo (escondida de leitores de tela) -->
+      <li class="logo-card logo-copia" aria-hidden="true" data-fallback><img src="assets/operadoras/amil.png" alt="" loading="lazy"><span>Amil</span></li>
+      <li class="logo-card logo-copia" aria-hidden="true" data-fallback><img src="assets/operadoras/bradesco-saude.png" alt="" loading="lazy"><span>Bradesco Saúde</span></li>
+      <li class="logo-card logo-copia" aria-hidden="true" data-fallback><img src="assets/operadoras/sulamerica.png" alt="" loading="lazy"><span>SulAmérica</span></li>
+      <li class="logo-card logo-copia" aria-hidden="true" data-fallback><img src="assets/operadoras/hapvida.png" alt="" loading="lazy"><span>Hapvida</span></li>
+      <li class="logo-card logo-copia" aria-hidden="true" data-fallback><img src="assets/operadoras/tempomed.png" alt="" loading="lazy"><span>Tempo Med</span></li>
+      <li class="logo-card logo-copia" aria-hidden="true" data-fallback><img src="assets/operadoras/unimed.png" alt="" loading="lazy"><span>Unimed</span></li>
+    </ul>
+  </div>
+  <div class="wrap sec-acao">
+    <a class="btn btn-primary" href="#cotacao">Fazer minha cotação</a>
   </div>
 </section>
+<!-- OPERADORAS:FIM -->
 
 <!-- ============ PRODUTOS ============ -->
-<section class="section" id="produtos">
+<section class="section section-alt" id="produtos" aria-labelledby="produtos-titulo">
   <div class="wrap">
-    <span class="eyebrow" data-reveal>O que cobrimos</span>
-    <h2 class="h2" data-reveal>Um plano pra cada momento da sua vida</h2>
-    <p class="lede" data-reveal>Do individual ao corporativo — montamos a opção que cabe no seu bolso e na sua necessidade real.</p>
-
-    <div class="products-grid" data-stagger>
-      <div class="product-card card-hover">
-        <div class="icone-box"><svg class="ico"><use href="#i-coracao"/></svg></div>
-        <h4>Plano de Saúde</h4>
-        <p>Individual, familiar ou empresarial, nas principais operadoras do país.</p>
-      </div>
-      <div class="product-card card-hover">
-        <div class="icone-box"><svg class="ico"><use href="#i-escudo"/></svg></div>
-        <h4>Seguro de Vida</h4>
-        <p>Proteção financeira pra quem depende de você, com cobertura sob medida.</p>
-      </div>
-      <div class="product-card card-hover">
-        <div class="icone-box"><svg class="ico"><use href="#i-documento"/></svg></div>
-        <h4>Seguro Auto</h4>
-        <p>Cotação em minutas comparando as melhores seguradoras do mercado.</p>
-      </div>
-      <a href="#" class="product-card more">
-        <h4>+ Mais Seguros</h4>
-        <p>Viagem, incêndio, condomínio, engenharia e mais.</p>
-        <a href="#cotacao">Ver lista completa →</a>
-      </a>
+    <div class="sec-topo center">
+      <h2 class="h2" id="produtos-titulo" data-reveal>Um plano para cada momento da sua vida</h2>
+      <p class="lede" data-reveal>Do plano individual ao empresarial, montamos a opção que cabe no seu bolso e na sua necessidade.</p>
+    </div>
+    <div class="cards-grid cards-4" data-stagger>
+      <article class="card card-hover card-link">
+        <div class="icone-box"><svg class="ico" aria-hidden="true"><use href="#i-familia"/></svg></div>
+        <h3>Plano de Saúde Individual e Familiar</h3>
+        <p>Para você e sua família, com opções regionais, nacionais e por adesão.</p>
+        <a class="link-seta" href="plano-de-saude-individual.html">Saiba mais<span class="sr-only"> sobre plano de saúde individual e familiar</span><svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+      </article>
+      <article class="card card-hover card-link">
+        <div class="icone-box"><svg class="ico" aria-hidden="true"><use href="#i-empresa"/></svg></div>
+        <h3>Plano de Saúde Empresarial e MEI</h3>
+        <p>Para empresas e MEI a partir de 2 vidas, com valores melhores que o individual.</p>
+        <a class="link-seta" href="plano-de-saude-empresarial.html">Saiba mais<span class="sr-only"> sobre plano de saúde empresarial e MEI</span><svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+      </article>
+      <article class="card card-hover card-link">
+        <div class="icone-box"><svg class="ico" aria-hidden="true"><use href="#i-dente"/></svg></div>
+        <h3>Plano Odontológico</h3>
+        <p>Cobertura odontológica sozinha ou junto com o plano de saúde.</p>
+        <a class="link-seta" href="plano-odontologico.html">Saiba mais<span class="sr-only"> sobre plano odontológico</span><svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+      </article>
+      <article class="card card-hover card-link">
+        <div class="icone-box"><svg class="ico" aria-hidden="true"><use href="#i-escudo"/></svg></div>
+        <h3>Seguro de Vida</h3>
+        <p>Proteção financeira para quem depende de você, com SulAmérica e Bradesco.</p>
+        <a class="link-seta" href="seguro-de-vida.html">Saiba mais<span class="sr-only"> sobre seguro de vida</span><svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ DIFERENCIAIS ============ -->
-<section class="why" id="por-que">
+<!-- ============ COMPARAR ============ -->
+<section class="section comparar" id="comparar" aria-labelledby="comparar-titulo">
   <div class="wrap">
-    <span class="eyebrow">Por que a Direcional</span>
-    <h2 class="h2">3 motivos pra cotar com a gente</h2>
-
-    <div class="why-grid" data-stagger>
-      <div class="why-item">
-        <span class="num">01</span>
-        <h4>Atendimento Humano Real</h4>
-        <p>Um consultor dedicado te acompanha do primeiro contato até a implantação — nada de fila de robô.</p>
-      </div>
-      <div class="why-item">
-        <span class="num">02</span>
-        <h4>Comparamos Por Você</h4>
-        <p>Analisamos as principais operadoras e trazemos a opção com melhor custo-benefício real pro seu caso.</p>
-      </div>
-      <div class="why-item">
-        <span class="num">03</span>
-        <h4>Suporte No Pós-Venda</h4>
-        <p>Dúvida com sinistro, reembolso ou boleto? Continuamos com você depois que o contrato é assinado.</p>
-      </div>
+    <div class="sec-topo center">
+      <h2 class="h2" id="comparar-titulo" data-reveal>Pensando em Unimed ou em outro plano? Compare antes de decidir.</h2>
+      <p class="lede" data-reveal>Muita gente chega até nós procurando um plano específico. A gente entende o que é importante para você, como hospitais, cidade e orçamento, e mostra as opções lado a lado. Assim você decide com os números na mão.</p>
+    </div>
+    <ol class="passos" data-draw data-stagger>
+      <li class="passo">
+        <div class="passo-icone"><svg class="ico" aria-hidden="true"><use href="#i-conversa"/></svg><span class="passo-num" aria-hidden="true">1</span></div>
+        <h3>Conta pra gente o que você precisa</h3>
+      </li>
+      <li class="passo">
+        <div class="passo-icone"><svg class="ico" aria-hidden="true"><use href="#i-balanca"/></svg><span class="passo-num" aria-hidden="true">2</span></div>
+        <h3>Comparamos rede, carência e valor</h3>
+      </li>
+      <li class="passo">
+        <div class="passo-icone"><svg class="ico" aria-hidden="true"><use href="#i-check-circulo"/></svg><span class="passo-num" aria-hidden="true">3</span></div>
+        <h3>Você escolhe com calma, sem pressão</h3>
+      </li>
+    </ol>
+    <div class="sec-acao">
+      <a class="btn btn-primary" href="#cotacao">Quero comparar meu plano</a>
     </div>
   </div>
 </section>
+
+<!-- ============ EMPRESAS QUE CONFIAM ============ -->
+<!-- CLIENTES:INICIO (bloco reutilizado em quem-somos.html) -->
+<section class="section section-alt" id="clientes" aria-labelledby="clientes-titulo">
+  <div class="wrap">
+    <div class="sec-topo center">
+      <h2 class="h2 titulo-sublinhado" id="clientes-titulo" data-reveal>Empresas que confiam na Direcional</h2>
+      <p class="lede" data-reveal>Há 10 anos cuidando da saúde de quem faz a Grande Florianópolis acontecer.</p>
+    </div>
+    <ul class="clientes-grid" data-stagger>
+      <!-- CLIENTE: duplicar este bloco -->
+      <li class="cliente-card card-hover" data-fallback>
+        <div class="cliente-logo">
+          <img src="assets/clientes/floripa-shopping.png" alt="Logo do Floripa Shopping" loading="lazy">
+          <span class="cliente-inicial" aria-hidden="true">F</span>
+        </div>
+        <h3>Floripa Shopping</h3>
+        <p>Shopping center</p>
+      </li>
+      <!-- CLIENTE: duplicar este bloco -->
+      <li class="cliente-card card-hover" data-fallback>
+        <div class="cliente-logo">
+          <img src="assets/clientes/via-catarina.png" alt="Logo do Via Catarina Shopping" loading="lazy">
+          <span class="cliente-inicial" aria-hidden="true">V</span>
+        </div>
+        <h3>Via Catarina Shopping</h3>
+        <p>Shopping center</p>
+      </li>
+      <!-- CLIENTE: duplicar este bloco -->
+      <li class="cliente-card card-hover" data-fallback>
+        <div class="cliente-logo">
+          <img src="assets/clientes/laboratorio-santa-luzia.png" alt="Logo do Laboratório Santa Luzia" loading="lazy">
+          <span class="cliente-inicial" aria-hidden="true">L</span>
+        </div>
+        <h3>Laboratório Santa Luzia</h3>
+        <p>Saúde e diagnóstico</p>
+      </li>
+      <!-- CLIENTE: duplicar este bloco -->
+      <li class="cliente-card card-hover" data-fallback>
+        <div class="cliente-logo">
+          <img src="assets/clientes/transporte-publico.png" alt="Logo dos Operadores do Transporte Público da Grande Florianópolis" loading="lazy">
+          <span class="cliente-inicial" aria-hidden="true">O</span>
+        </div>
+        <h3>Operadores do Transporte Público da Grande Florianópolis</h3>
+        <p>Transporte coletivo</p>
+      </li>
+    </ul>
+  </div>
+</section>
+<!-- CLIENTES:FIM -->
 
 <!-- ============ DEPOIMENTOS ============ -->
-<section class="section" id="depoimentos">
+<!-- DEPOIMENTOS: seção oculta porque os textos abaixo são de exemplo, não de clientes reais.
+     Para ativar: troque pelos depoimentos reais (texto, nome e plano) e remova o atributo hidden. -->
+<section class="section" id="depoimentos" aria-labelledby="depoimentos-titulo" hidden>
   <div class="wrap">
-    <span class="eyebrow">Quem já confia</span>
-    <h2 class="h2">O que nossos clientes dizem</h2>
+    <div class="sec-topo center">
+      <h2 class="h2" id="depoimentos-titulo">O que nossos clientes dizem</h2>
+    </div>
+    <div class="depoimentos-trilho">
+      <blockquote class="depoimento">
+        <p>Depoimento de exemplo. Substituir por um relato real de cliente antes de publicar.</p>
+        <footer><b>Nome do cliente</b>Plano individual</footer>
+      </blockquote>
+      <blockquote class="depoimento">
+        <p>Depoimento de exemplo. Substituir por um relato real de cliente antes de publicar.</p>
+        <footer><b>Nome do cliente</b>Plano empresarial</footer>
+      </blockquote>
+      <blockquote class="depoimento">
+        <p>Depoimento de exemplo. Substituir por um relato real de cliente antes de publicar.</p>
+        <footer><b>Nome do cliente</b>Seguro de vida</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
 
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Depoimento de exemplo — substituir por um relato real de cliente antes de publicar."</p>
-        <div class="who">
-          <div class="avatar">??</div>
-          <div><b>Nome do cliente</b><span>Plano Individual</span></div>
-        </div>
-        <span class="placeholder-flag">placeholder</span>
+<!-- ============ DÚVIDAS ============ -->
+<section class="section" id="duvidas" aria-labelledby="duvidas-titulo">
+  <div class="wrap estreito">
+    <div class="sec-topo center">
+      <h2 class="h2" id="duvidas-titulo" data-reveal>Dúvidas frequentes</h2>
+    </div>
+    <div class="acordeao" data-reveal>
+      <div class="acordeao-item">
+        <h3><button class="acordeao-botao" type="button" aria-expanded="false" aria-controls="faq-1" id="faq-1-b">O que é carência?<span class="mais" aria-hidden="true"></span></button></h3>
+        <div class="acordeao-painel" id="faq-1" role="region" aria-labelledby="faq-1-b"><div><p>É o tempo entre a contratação e a liberação de cada tipo de atendimento. Urgência e emergência costumam ser liberadas em 24 horas. Quem vem de outro plano pode ter redução de carência, e a gente confere isso para você.</p></div></div>
       </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Depoimento de exemplo — substituir por um relato real de cliente antes de publicar."</p>
-        <div class="who">
-          <div class="avatar">??</div>
-          <div><b>Nome do cliente</b><span>Plano Empresarial</span></div>
-        </div>
-        <span class="placeholder-flag">placeholder</span>
+      <div class="acordeao-item">
+        <h3><button class="acordeao-botao" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-2-b">O que é coparticipação?<span class="mais" aria-hidden="true"></span></button></h3>
+        <div class="acordeao-painel" id="faq-2" role="region" aria-labelledby="faq-2-b"><div><p>É um valor pago só quando você usa o plano, como numa consulta ou exame. Em troca, a mensalidade fica mais baixa. Também existem planos sem coparticipação.</p></div></div>
       </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>"Depoimento de exemplo — substituir por um relato real de cliente antes de publicar."</p>
-        <div class="who">
-          <div class="avatar">??</div>
-          <div><b>Nome do cliente</b><span>Seguro de Vida</span></div>
-        </div>
-        <span class="placeholder-flag">placeholder</span>
+      <div class="acordeao-item">
+        <h3><button class="acordeao-botao" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-3-b">MEI pode contratar plano empresarial?<span class="mais" aria-hidden="true"></span></button></h3>
+        <div class="acordeao-painel" id="faq-3" role="region" aria-labelledby="faq-3-b"><div><p>Sim, a partir de 2 vidas, e normalmente sai mais em conta que o individual. As regras de tempo de CNPJ mudam de operadora para operadora.</p></div></div>
+      </div>
+      <div class="acordeao-item">
+        <h3><button class="acordeao-botao" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-4-b">Tenho Unimed. Vocês podem me ajudar?<span class="mais" aria-hidden="true"></span></button></h3>
+        <div class="acordeao-painel" id="faq-4" role="region" aria-labelledby="faq-4-b"><div><p>Sim. Muitos clientes chegam até nós com Unimed ou pensando nela. A gente entende o que é importante para você, como hospitais, médicos e orçamento, e compara rede, carência e valor para você decidir com segurança.</p></div></div>
+      </div>
+      <div class="acordeao-item">
+        <h3><button class="acordeao-botao" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-5-b">Posso trocar de plano sem perder as carências?<span class="mais" aria-hidden="true"></span></button></h3>
+        <div class="acordeao-painel" id="faq-5" role="region" aria-labelledby="faq-5-b"><div><p>Em muitos casos, sim, pela portabilidade de carências ou pela redução de carência de cada operadora. Mande os dados do seu plano atual que a gente confere.</p></div></div>
+      </div>
+      <div class="acordeao-item">
+        <h3><button class="acordeao-botao" type="button" aria-expanded="false" aria-controls="faq-6" id="faq-6-b">Quanto custa a cotação?<span class="mais" aria-hidden="true"></span></button></h3>
+        <div class="acordeao-painel" id="faq-6" role="region" aria-labelledby="faq-6-b"><div><p>Nada. A cotação é gratuita e sem compromisso, e os valores são os mesmos tabelados pela operadora.</p></div></div>
+      </div>
+      <div class="acordeao-item">
+        <h3><button class="acordeao-botao" type="button" aria-expanded="false" aria-controls="faq-7" id="faq-7-b">Depois de contratar, com quem eu falo?<span class="mais" aria-hidden="true"></span></button></h3>
+        <div class="acordeao-painel" id="faq-7" role="region" aria-labelledby="faq-7-b"><div><p>Com o seu consultor, direto pelo WhatsApp, todos os dias, inclusive fins de semana e feriados.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA FINAL ============ -->
-<section class="cta-band">
+<!-- ============ COTAÇÃO ============ -->
+<section class="section section-alt cotacao-final" id="cotacao" aria-label="Solicitar cotação">
   <div class="wrap">
-    <h2 class="h2">Pronto pra ter um plano que faz sentido?</h2>
-    <p class="lede">Fale agora com um consultor e receba sua cotação sem compromisso.</p>
-    <a class="btn btn-primary" href="#cotacao">Solicitar Cotação Agora</a>
+    <!-- FORMULARIO:INICIO -->
+    <form class="quote-card form-cotacao" novalidate data-reveal>
+      <h2 class="form-titulo">Solicite uma cotação grátis</h2>
+      <p class="lede">Resposta rápida, todos os dias, sem compromisso.</p>
+      <div class="form-grid">
+        <label class="field field-full"><span>Tipo de plano</span>
+          <select name="tipo" required>
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="individual">Individual ou familiar</option>
+            <option value="empresa">Empresa ou MEI</option>
+            <option value="odonto">Plano odontológico</option>
+            <option value="vida">Seguro de vida</option>
+          </select>
+        </label>
+        <label class="field"><span>Nome</span>
+          <input name="nome" type="text" autocomplete="name" placeholder="Seu nome" required>
+        </label>
+        <label class="field"><span>WhatsApp</span>
+          <input name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(48) 99999-9999" maxlength="15" required>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block btn-roll"><span class="roll-txt">Quero minha cotação</span><span class="roll-txt" aria-hidden="true">Quero minha cotação</span></button>
+      <p class="quote-note">Ao enviar, você será direcionado ao nosso WhatsApp para falar com um consultor.</p>
+    </form>
+    <!-- FORMULARIO:FIM -->
   </div>
 </section>
 
+</main>
+
 <!-- ============ RODAPÉ ============ -->
-<footer class="site-footer" id="cotacao">
+<footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div>

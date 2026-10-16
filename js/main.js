@@ -185,6 +185,52 @@ function initCounters() {
   });
 }
 
+/* ---------- Linhas que se desenham ao rolar (passos, trajetória) ---------- */
+function initDraw() {
+  const els = document.querySelectorAll("[data-draw]");
+  if (reduzMovimento || !("IntersectionObserver" in window)) {
+    els.forEach((el) => el.classList.add("is-drawn"));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("is-drawn");
+        io.unobserve(en.target);
+      }),
+    { threshold: 0.35 }
+  );
+  els.forEach((el) => io.observe(el));
+}
+
+/* ---------- Acordeão: uma resposta aberta por vez ---------- */
+function initAcordeao() {
+  document.querySelectorAll(".acordeao").forEach((grupo) => {
+    const itens = [...grupo.querySelectorAll(".acordeao-item")];
+    const set = (item, aberto) => {
+      item.classList.toggle("aberto", aberto);
+      item.querySelector(".acordeao-botao").setAttribute("aria-expanded", String(aberto));
+    };
+    itens.forEach((item) =>
+      item.querySelector(".acordeao-botao").addEventListener("click", () => {
+        const abrir = !item.classList.contains("aberto");
+        itens.forEach((i) => set(i, false));
+        set(item, abrir);
+      })
+    );
+    grupo.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const aberto = itens.find((i) => i.classList.contains("aberto"));
+      if (aberto) {
+        set(aberto, false);
+        aberto.querySelector(".acordeao-botao").focus();
+      }
+    });
+    if (itens[0]) set(itens[0], true);
+  });
+}
+
 /* ---------- Voltar ao topo ---------- */
 function initToTop() {
   const btn = document.getElementById("toTop");
@@ -217,25 +263,26 @@ function initForm() {
     waFloat.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Quero saber mais sobre planos de saúde e seguros.")}`;
   }
 
-  const form = document.getElementById("quoteForm");
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
+  document.querySelectorAll(".form-cotacao").forEach((form) =>
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
 
-    const tipo = document.getElementById("tipoPlano").value;
-    const nome = document.getElementById("nome").value.trim();
-    const whatsapp = document.getElementById("whatsapp").value.trim();
+      const sel = form.elements.tipo;
+      const tipo = sel.options[sel.selectedIndex].text;
+      const nome = form.elements.nome.value.trim();
+      const whatsapp = form.elements.whatsapp.value.trim();
 
-    if (!tipo || !nome || !whatsapp) return;
+      const mensagem =
+        `Olá! Meu nome é ${nome} e quero uma cotação de: ${tipo}.\n` +
+        `Meu WhatsApp pra contato: ${whatsapp}`;
 
-    const mensagem =
-      `Olá! Meu nome é ${nome} e quero uma cotação de: ${tipo}.\n` +
-      `Meu WhatsApp pra contato: ${whatsapp}`;
-
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`,
-      "_blank"
-    );
-  });
+      window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`,
+        "_blank"
+      );
+    })
+  );
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -245,6 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initActiveNav();
   initReveal();
   initCounters();
+  initDraw();
+  initAcordeao();
   initToTop();
   initForm();
 });
